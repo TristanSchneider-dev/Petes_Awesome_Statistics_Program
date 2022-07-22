@@ -13,10 +13,10 @@ import pandas as pd #Exceldatensatz einlesen
 data = pd.read_excel('Mappe1.xlsx')
 data = data['Alter'].to_list()
 
-#Datensatz als Liste
+#Ersatz Datensatz als Liste
 #data = [21, 23, 18, 20, 30, 25, 21, 21, 23, 23]
 
-def mittel(data):
+def mittelwert(data):
     n = len(data)
     summe = 0
     for i in data:
@@ -26,35 +26,59 @@ def mittel(data):
 def median(data):
     n = len(data)
     data = sorted(data)
-    if n%2 == 0:
-        #Anzahl der Elemente in Liste ist gerade
+    if n%2 == 0:    #Anzahl der Elemente in Liste ist gerade
         return 0.5 * (data[n//2] + data[n//2-1])
-    else:
-        #Anzahl der Elemente in Liste ist ungerade
+    else:   #Anzahl der Elemente in Liste ist ungerade
         return data[n//2]
     
-#Benötigt Laufzeitoptimierung
-def modal(data):
+def modalwert(data):
     modalwerte = []
     vorkommen = []
     max_anzahl = 0
-    #Zähle wie oft das Element in Liste vorkommt
-    for i in data:
+    for i in data:  #Zähle wie oft das Element in Liste vorkommt
         anzahl = data.count(i)
-        #Prüft ob das aktuelle Element das häufigste ist
-        if anzahl > max_anzahl:
+        if anzahl > max_anzahl: #Prüft ob das aktuelle Element das häufigste ist
             max_anzahl = anzahl
         vorkommen.append((anzahl,i))
-    for j in vorkommen:
-        #Prüft welche Werte am häufigsten vorkommen
+    for j in vorkommen:  #Prüft welche Werte am häufigsten vorkommen
         if j[0] == max_anzahl:
             modalwerte.append(j[1])
     return set(modalwerte) #Set eleminiert Duplikate
 
+def summe(data):
+    sum = 0
+    for i in data:
+        sum += i
+    return sum
+
+def minimum(data):
+    min = sorted(data)
+    return min[0]
+
+def maximum(data):
+    max = sorted(data)
+    return max[-1]
+
+def spannweite(data):
+    a = sorted(data)
+    return a[-1] - a[0]
+
 def varianz(data):
-    return 0, 0**2 #hoch zwei
+    a = 1 / len(data)
+    b = 0
+    for i in data:
+        b += (i - mittelwert(data))**2
+    return a * b
 
+def standardabweichung(data):
+    return varianz(data) ** 0.5 #Wurzel aus Varianz
 
-print(f'Der Mittelwert ist {mittel(data)}')
-print(f'Der Median ist {median(data)}')
-print(f'Der Modus ist {modal(data)}')
+print(f'Mittelwert = {mittelwert(data)}')
+print(f'Median = {median(data)}')
+print(f'Modalwert = {modalwert(data)}')
+print(f'Summe = {summe(data)}')
+print(f'Min = {minimum(data)}')
+print(f'Max = {max(data)}')
+print(f'Spannweite = {spannweite(data)}')
+print(f'Varianz = {varianz(data)}')
+print(f'Standardabweichung = {standardabweichung(data)}')
