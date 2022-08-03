@@ -10,8 +10,8 @@ Created on Tue Jun 21 23:28:05 2022
 import pandas as pd #Exceldatensatz einlesen
 
 #Excel zu Liste
-data = pd.read_excel('Mappe1.xlsx')
-data = data['Alter'].to_list()
+data = pd.read_excel('C:/Users/Tristan/Desktop/Pisa.xlsx')
+data = data['PISA'].to_list()
 
 #Ersatz Datensatz als Liste
 #data = [21, 23, 18, 20, 30, 25, 21, 21, 23, 23]
@@ -63,8 +63,8 @@ def spannweite(data):
     a = sorted(data)
     return a[-1] - a[0]
 
-def varianz(data):
-    a = 1 / len(data)
+def varianz(data): #Von Formel abgeleitet - Benötigt optimierung
+    a = 1 / (len(data) - 1)
     b = 0
     for i in data:
         b += (i - mittelwert(data))**2
@@ -73,9 +73,9 @@ def varianz(data):
 def standardabweichung(data):
     return varianz(data) ** 0.5 #Wurzel aus Varianz
 
-print(f'Mittelwert = {mittelwert(data)}')
+print(f'Mittel = {mittelwert(data)}')
 print(f'Median = {median(data)}')
-print(f'Modalwert = {modalwert(data)}')
+print(f'Modal = {modalwert(data)}')
 print(f'Summe = {summe(data)}')
 print(f'Min = {minimum(data)}')
 print(f'Max = {max(data)}')
