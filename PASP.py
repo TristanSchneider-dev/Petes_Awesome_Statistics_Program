@@ -7,13 +7,13 @@ Created on Tue Jun 21 23:28:05 2022
 @author: Tristan
 """
 
-import pandas as pd #Exceldatensatz einlesen
+import pandas as pd
 
 #Excel zu Liste
-data = pd.read_excel('C:/Users/Tristan/Desktop/Pisa.xlsx')
+data = pd.read_excel('PLACEHOLDER') #Dateipfad hier einfügen
 data = data['PISA'].to_list()
 
-#Ersatz Datensatz als Liste
+#Test Datensatz
 #data = [21, 23, 18, 20, 30, 25, 21, 21, 23, 23]
 
 def mittelwert(data):
@@ -71,7 +71,7 @@ def varianz(data): #Von Formel abgeleitet - Benötigt optimierung
     return a * b
 
 def standardabweichung(data):
-    return varianz(data) ** 0.5 #Wurzel aus Varianz
+    return varianz(data) ** 0.5
 
 print(f'Mittel = {mittelwert(data)}')
 print(f'Median = {median(data)}')
