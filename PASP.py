@@ -11,7 +11,7 @@ import pandas as pd
 
 #Excel zu Liste
 data = pd.read_excel('PLACEHOLDER') #Dateipfad hier einfügen
-data = data['PISA'].to_list()
+data = data['PLACEHOLDER'].to_list() #Spaltenname hier einfügen
 
 #Test Datensatz
 #data = [21, 23, 18, 20, 30, 25, 21, 21, 23, 23]
@@ -63,7 +63,7 @@ def spannweite(data):
     a = sorted(data)
     return a[-1] - a[0]
 
-def varianz(data): #Von Formel abgeleitet - Benötigt optimierung
+def varianz(data): #Von Formel abgeleitet - Benötigt Laufzeitoptimierung
     a = 1 / (len(data) - 1)
     b = 0
     for i in data:
